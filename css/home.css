@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+a{
+    text-decoration: none;
+}
+li {
+    list-style: none;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.nav_logo{
+    margin: 20px;
+    color: #557C55;
+    font-weight: 700;
+    font-size: large;
+}
+.nav_link{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    font-weight: 600;
+    margin: 20px;
+}
+.nav_link a{
+    color: black;
+    transition: 0.4s;
+}
+.nav_link a:hover{
+    color: gray;
+}
+.icon{
+    margin: 20px;
+}
+
+.header-section {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    margin: 5rem;
+}
+
+.left {
+    position: relative;
+    bottom: -30px;
+    width: 100%;
+}
+.left p{
+    font-weight: 500;
+}
+.right {
+    display: flex;
+}
+
+.right img {
+    width: 10rem;
+
+}
+
+.anim {
+    background-color: #557C55;
+    rotate: 50%;
+    border-radius: 50%;
+    padding: 20px;
+    margin: 12PX;
+}
+
+.image_anim {
+    animation: mymove 9s infinite;
+    position: relative;
+}
+
+@keyframes mymove {
+    0% {
+        top: 0px;
+    }
+
+    25% {
+        top: 20px;
+    }
+
+    50% {
+        top: 50px;
+    }
+
+    75% {
+        top: 0px;
+    }
+
+
+}
+.bttn{
+    background-color: #557C55;
+    border-radius: 7px;
+    padding: 10px 40px;
+    color: white;
+    border: none;
+    margin: 10px
+}
+.card{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+.item{
+    margin: 20px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    padding: 10px;
+    border-radius: 8px;
+    width: 17rem;
+}
+.item i{
+    font-size: 3rem;
+    color: #557C55;
+    margin: 10px;
+}
+.products{
+    text-align: center;
+}
+.green{
+    color: #1A5D1A;
+}
+.submit {
+    text-align: center;
+    background-color: #557C55;
+    border: none;
+    padding: 10px 110px;
+    color: white;
+    display: flex;
+    align-items: end;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 7px;
+}
+.about{
+    background-image: url(../img/backgoround-patreen.png);
+    color: white;
+}
+.category{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    margin: 7rem;
+}

@@ -1,0 +1,36 @@
+.icon-list {
+    position: absolute;
+    bottom: -100px;
+    left: 40%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-out;
+}
+
+.icon-list button {
+    border: none;
+    background-color: #202020;
+    color: #fff;
+    margin: 0 6px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.icon-list button:hover {
+    background-color: #f4f4f4;
+    color: #202020;
+}
+
+.item-img:hover .icon-list {
+    bottom: 15px;
+    translate: 20%;
+}
