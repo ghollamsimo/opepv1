@@ -1,4 +1,5 @@
 <?php
+
 include '../config/connect.php';
 $showplant = "SELECT * FROM plants";
 $stmt = $conn->query($showplant);
@@ -30,6 +31,15 @@ if (isset($_POST['delete_product'])) {
     $stmtdelte->execute();
     header('Location:' . $_SERVER['HTTP_REFERER']);
 }
+// if (isset($_POST['editproduct'])) {
+//     $img = $_POST['uploadimg'];
+//     $prix = $_POST['price'];
+//     $nom = $_POST['nomproduct'];
+
+//     $edit = "UPDATE plants SET plants";
+//     $exe = $conn->prepare($edit);
+//     $exe->bind_param()
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
