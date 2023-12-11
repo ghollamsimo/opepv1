@@ -1,6 +1,8 @@
 <?php
 include '../config/connect.php';
-$requet = "SELECT * FROM plants";
+$requet = "SELECT plants.*, category.nom as nom 
+                 FROM plants 
+                 LEFT JOIN category ON plants.categoryid = category.idcategory";
 $stmt = $conn->query($requet);
 
 $requetcat = "SELECT * FROM category";
@@ -145,11 +147,11 @@ $userid = $_SESSION['userId'];
                         <img src="../img/<?= $row['img'] ?>" alt="" width="100px">
                     </div>
                     <div class="course-info">
-                        <h2><?= $row['nom'] ?></h2>
+                        <h2><?= $row['nomplants'] ?></h2>
                         <h6>$<?= $row['price'] ?></h6>
                         <div class="btn_cat">
                             <span class="progress-text">
-                                category Name
+                                <?= $row['nom'] ?>
                             </span>
                             <form action="./plants.php">
                                 <button class="btn">Add To Cart</button>

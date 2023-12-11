@@ -1,6 +1,8 @@
 <?php
 include '../config/connect.php';
-$showplant = "SELECT * FROM plants";
+$showplant = "SELECT plants.*, category.nom as nom 
+                 FROM plants 
+                 LEFT JOIN category ON plants.categoryid = category.idcategory";
 $stmt = $conn->query($showplant);
 
 $showcategory = "SELECT * FROM category";
@@ -113,9 +115,9 @@ $stmtow = $conn->query($showusers);
                         ?>
                         <tr>
                             <td><img src="../img/<?= $row['img'] ?>" alt="" width="100px"></td>
-                            <td><?= $row['nom'] ?></td>
+                            <td><?= $row['nomplants'] ?></td>
                             <td>$<?= $row['price'] ?></td>
-                            <td>Content 1</td>
+                            <td><?= $row['nom'] ?></td>
                         </tr>
                         <?php endwhile ?>
                     <tbody>

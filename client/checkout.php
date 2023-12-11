@@ -44,7 +44,7 @@ $stmtwo = $conn->query($select);
                     <?php
                     while ($afiche = mysqli_fetch_assoc($stmtwo)) :
                         $img = $afiche['img'];
-                        $nom = $afiche['nom'];
+                        $nom = $afiche['nomplants'];
                         $quantity = $afiche['quantity'];
                         $price = $afiche['price'];
                         $total += $price * $quantity;

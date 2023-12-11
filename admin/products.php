@@ -6,9 +6,9 @@ $stmt = $conn->query($showplant);
 $showCategories = "SELECT * FROM category";
 $stmtCategories = $conn->query($showCategories);
 
-$showProducts = "SELECT plants.*, category.nom as nom 
-                 FROM plants 
-                 LEFT JOIN category ON plants.categoryid = category.idcategory";
+    $showProducts = "SELECT plants.*, category.nom as nom 
+                    FROM plants 
+                    LEFT JOIN category ON plants.categoryid = category.idcategory";
 $stmtProducts = $conn->query($showProducts);
 
 if (isset($_POST['add_product'])) {
@@ -17,7 +17,7 @@ if (isset($_POST['add_product'])) {
     $nomproduct = $_POST['nomproduct'];
     $categoryid = $_POST['option'];
 
-    $addproduct = "INSERT INTO plants (img, nom, price , categoryid) VALUES (?, ?, ? , ?)";
+    $addproduct = "INSERT INTO plants (img, nomplants, price , categoryid) VALUES (?, ?, ? , ?)";
     $stmtadd = $conn->prepare($addproduct);
     $stmtadd->bind_param("ssii", $uploadimg, $nomproduct, $price, $categoryid);
     $stmtadd->execute();
@@ -45,7 +45,7 @@ if (isset($_POST['delete_product'])) {
 
 <body>
 
-    <?php include './sidebar.php'?>
+    <?php include './sidebar.php' ?>
 
     <section class="home ">
         <div class="text nav_dash">
@@ -64,7 +64,7 @@ if (isset($_POST['delete_product'])) {
             </div>
             <div class="plant">
                 <?php
-                while ($row = mysqli_fetch_assoc($stmt)) :
+                while ($row = mysqli_fetch_assoc($stmtProducts)) :
                 ?>
                 <div class="courses-container">
                     <div class="course">
@@ -72,14 +72,10 @@ if (isset($_POST['delete_product'])) {
                             <img src="../img/<?= $row['img'] ?>" alt="" width="100px">
                         </div>
                         <div class="course-info">
-                            <h2><?= $row['nom'] ?></h2>
+                            <h2><?= $row['nomplants'] ?></h2>
                             <h6>$<?= $row['price'] ?></h6>
                             <div class="btn_cat">
-
-                                <span class="progress-text">
-                                    <?= $row['nom'] ?>
-                                    <!-- Display category name -->
-                                </span>
+                                <span class="progress-text"><?= $row['nom'] ?></span>
                                 <button class="button"><i class='bx bx-edit-alt'></i></button>
                                 <button data-modal-target="delete-modal"
                                     data-modal-toggle="delete-modal-<?= $row["idplants"] ?>" class="button"><i

@@ -28,14 +28,9 @@ if (isset($_POST['productid'])) {
         header('Location:' . $_SERVER['HTTP_REFERER']);
     }
 }
-if (isset($_POST['delete_product'])) {
-    $query = "DELETE FROM plants WHERE idplants = ?";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $_POST['id_product']);
-    $stmt->execute();
-    header('Location:' . $_SERVER['HTTP_REFERER']);
-}
-$requet = "SELECT * FROM plants";
+$requet = "SELECT plants.*, category.nom as nom 
+                 FROM plants 
+                 LEFT JOIN category ON plants.categoryid = category.idcategory";
 $stmt = $conn->query($requet);
 ?>
 <!DOCTYPE html>
@@ -100,7 +95,7 @@ $stmt = $conn->query($requet);
     <?php
     if (isset($_GET['search'])) {
         $filtervalues = $_GET['search'];
-        $query = "SELECT * FROM plants WHERE nom LIKE '%$filtervalues%' LIMIT 1";
+        $query = "SELECT * FROM plants WHERE nomplants LIKE '%$filtervalues%'";
         $queryrun = mysqli_query($conn, $query);
         if (mysqli_num_rows($queryrun) > 0) {
             $row = mysqli_fetch_assoc($queryrun);
@@ -113,11 +108,11 @@ $stmt = $conn->query($requet);
                         <img src="../img/<?= $row['img'] ?>" alt="" width="100px">
                     </div>
                     <div class="course-info">
-                        <h2><?= $row['nom'] ?></h2>
+                        <h2><?= $row['nomplants'] ?></h2>
                         <h6>$<?= $row['price'] ?></h6>
                         <div class="btn_cat">
                             <span class="progress-text">
-                                category Name
+                                <?= $row['nom'] ?>
                             </span>
                             <button class="btn">Add To Cart</button>
                         </div>
@@ -144,15 +139,16 @@ $stmt = $conn->query($requet);
                             <img src="../img/<?= $row['img'] ?>" alt="" width="100px">
                         </div>
                         <div class="course-info">
-                            <h2><?= $row['nom'] ?></h2>
+                            <h2><?= $row['nomplants'] ?></h2>
                             <h6>$<?= $row['price'] ?></h6>
                             <div class="btn_cat">
                                 <span class="progress-text">
-                                    category Name
+                                    <?= $row['nom'] ?>
                                 </span>
                                 <form action="" method="post">
                                     <input type="hidden" name="productid" value="<?= $row['idplants']  ?>">
-                                    <button name="addtocart" class="btn">Add To Cart</button>
+                                    <button name="addtocart" class="btn">Add To
+                                        Cart</button>
                                 </form>
                             </div>
                         </div>
@@ -170,7 +166,8 @@ $stmt = $conn->query($requet);
         class="fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto transition-transform translate-x-full bg-white w-80 "
         tabindex="-1" aria-labelledby="drawer-right-label">
         <h5 id="drawer-right-label"
-            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">Panier
+            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400">
+            Panier
         </h5>
         <button type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
@@ -187,7 +184,7 @@ $stmt = $conn->query($requet);
             $stmtwo = $conn->query($select);
             while ($afiche = mysqli_fetch_assoc($stmtwo)) :
                 $img = $afiche['img'];
-                $nom = $afiche['nom'];
+                $nom = $afiche['nomplants'];
                 $quantity = $afiche['quantity'];
                 $price = $afiche['price']; ?>
             <div class="flex m-3">
